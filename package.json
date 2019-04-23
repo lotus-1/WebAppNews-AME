@@ -1,0 +1,24 @@
+{
+  "name": "webappnews-ame",
+  "version": "1.0.0",
+  "description": "News headlines web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lotus-1/WebAppNews-AME.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lotus-1/WebAppNews-AME/issues"
+  },
+  "homepage": "https://github.com/lotus-1/WebAppNews-AME#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2"
+  }
+}
