@@ -1,42 +1,15 @@
-const fs = require("fs");
-const path = require("path");
-const url = require('url');
-const querystring = require('querystring');
-const request = require('request');
+const { handlerHome, handlerPublic } = require('./handler');
 
-const router = ((request, response) => {
-  const url = request.url;
-  if (url === "/") {
-    const filePath = path.join(__dirname, "..", "public", "index.html");
-    fs.readFile(filePath, (error, file) => {
-      if (error) {
-        response.writeHead(404, { 'Content-Type': 'text/html' });
-        response.end('404 - FILE NOT FOUND');
-      } else {
-        response.writeHead(200, { 'Content-Type': 'text/html' });
-        response.end(file);
-      }
-    });
-  }else if (url.indexOf('/public/') !== -1) {
-  const extension = url.split(".")[1];
-    const extensionTypes = {
-      html : 'text/html',
-      js : 'application/javascript',
-      css: 'text/css'
-    };
-  const filePath = path.join(__dirname, '..',"public", url);
-  fs.readFile(filePath, (error, file) => {
-    if (error) {
-      console.log(error);
-      response.writeHead(404, { 'Content-Type' : 'text/html' });
-      response.end('<h1> So sorry, I can\'t find this file...</h1>');
-    } else {
-      response.writeHead(200, { 'Content-Type' : extensionTypes[extension]});
-      response.end(file);
-    }
-  });
+const router = (request, response) => {
+const endpoint = request.url;
+
+if (endpoint === "/") {
+  handlerHome(request, response);
+} else {
+  handlerPublic(request, response);
+}
 };
-});
+
 
 const getData = (request, response) => {
   const myUrl = url.parse(request.url);
@@ -70,3 +43,5 @@ module.exports = {
   router,
   getData
 }
+
+
