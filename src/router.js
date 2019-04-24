@@ -4,7 +4,7 @@ const url = require('url');
 const querystring = require('querystring');
 const request = require('request');
 
-const router = (request, response) => {
+const router = ((request, response) => {
   const url = request.url;
   if (url === "/") {
     const filePath = path.join(__dirname, "..", "public", "index.html");
@@ -21,7 +21,8 @@ const router = (request, response) => {
   const extension = url.split(".")[1];
     const extensionTypes = {
       html : 'text/html',
-      js : 'application/javascript'
+      js : 'application/javascript',
+      css: 'text/css'
     };
   const filePath = path.join(__dirname, '..', url);
   fs.readFile(filePath, (error, file) => {
@@ -35,6 +36,7 @@ const router = (request, response) => {
     }
   });
 };
+});
 
 const getData =((request, response) =>{
 
@@ -47,4 +49,7 @@ console.log(query);
 //   console.log('this is url', url.parse(myUrl));
 //
 // });
-module.exports ={ router, getData}
+module.exports = {
+  router,
+  getData
+}
