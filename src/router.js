@@ -24,7 +24,7 @@ const router = ((request, response) => {
       js : 'application/javascript',
       css: 'text/css'
     };
-  const filePath = path.join(__dirname, '..', url);
+  const filePath = path.join(__dirname, '..',"public", url);
   fs.readFile(filePath, (error, file) => {
     if (error) {
       console.log(error);
