@@ -4,8 +4,8 @@
   "description": "News headlines web app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon src/server.js"
+    "test": "node test.js | tap-spec",
+     "server": "nodemon src/server.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,10 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
-    "nodemon": "^1.18.11"
+    "nodemon": "^1.18.11",
+    "supertest": "^4.0.2",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.10.1"
   },
   "dependencies": {
     "request": "^2.88.0"
