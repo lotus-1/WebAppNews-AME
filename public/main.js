@@ -1,15 +1,14 @@
-var inputValue = document.getElementById('search').value;
 
-inputValue.addEventListener('click', function(e){
+document.getElementById('submitButton').addEventListener('click', function(e){
   e.preventDefault();
-  fetchValue(inputValue);
+  fetchValue();
 });
 
 
-function fetchValue(e) {
-event.preventDefault();
-var input = document.getElementById('search');
-fetch('/search')
+function fetchValue() {
+var input = document.getElementById('search').value;
+console.log('user input : ' , input );
+fetch('/search?q=' + input)
 .then(function(response) {
   return response.json();
 })
