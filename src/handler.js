@@ -1,73 +1,69 @@
-const fs = require('fs');
-const path = require('path');
-const url = require('url');
-const querystring = require('querystring');
-const rqst = require('request');
-
+const fs = require("fs");
+const path = require("path");
+const url = require("url");
+const querystring = require("querystring");
+const rqst = require("request");
 
 const handlerHome = (request, response) => {
   const endpoint = request.url;
-  response.writeHead(200, { 'Content-Type': 'text/html' });
-  const filePath = path.join(__dirname, '..', 'public', 'index.html');
+  response.writeHead(200, { "Content-Type": "text/html" });
+  const filePath = path.join(__dirname, "..", "public", "index.html");
   fs.readFile(filePath, (error, file) => {
     if (error) {
-      response.writeHead(404, { 'Content-Type': 'text/html' });
-      response.end('404 - file not found');
+      response.writeHead(404, { "Content-Type": "text/html" });
+      response.end("404 - file not found");
       return;
     }
-    response.writeHead(200, { 'Content-Type': 'text/html' });
+    response.writeHead(200, { "Content-Type": "text/html" });
     response.end(file);
   });
 };
 
 const handlerPublic = (request, response) => {
-const url = request.url;
-const extension = url.split('.')[1];
-const filePath = path.join(__dirname, '..', 'public', url);
-const type = {
-    html : 'text/html',
-    css : 'text/css',
-    js : 'application/javascript'
-  }[extension]
+  const url = request.url;
+  const extension = url.split(".")[1];
+  const filePath = path.join(__dirname, "..", "public", url);
+  const type = {
+    html: "text/html",
+    css: "text/css",
+    js: "application/javascript"
+  }[extension];
 
   fs.readFile(filePath, (error, file) => {
     if (error) {
-      response.writeHead(404, { 'Content-Type': 'text/html' });
-      response.end('404 - file not found');
+      response.writeHead(404, { "Content-Type": "text/html" });
+      response.end("404 - file not found");
       return;
     }
-    response.writeHead(200, { 'Content-Type': type });
+    response.writeHead(200, { "Content-Type": type });
     response.end(file);
   });
 };
 
-const handlerData = ((request, response) => {
-  console.log('request.url is : ' , request.url );
+const handlerData = (request, response) => {
+
   const parseUrl = url.parse(request.url);
-  console.log('parseUrl is : ' , parseUrl);
-const parseQuery = querystring.parse(parseUrl.query)['q'];
-  console.log(parseQuery);
-let dataUrl = `https://newsapi.org/v2/top-headlines?country=&apiKey=05c75aad309f4dc5b04f2638474ce2cd`;
-console.log('data url : ', dataUrl);
-// const result = dataUrl.parse(url);
-// console.log('result is : ' , result);
-rqst(dataUrl, (err, res, body) => {
-  if (err) {
-    response.writeHead(404, { 'content-type': 'text/html'})
-    response.end('file not found');
-  } else {
-    const parseBody = json.parse(body);
-    let resultUrl = parseBody.data.articles.url;
-    response.writeHead(200, { 'content-type': 'text/html'})
-    response.end(resultUrl);
-  }
-})
-});
+  const parseQuery = querystring.parse(parseUrl.query);
+  const dataUrl = `https://newsapi.org/v2/top-headlines?country=${parseQuery.q}&apiKey=05c75aad309f4dc5b04f2638474ce2cd`;
+  console.log("data url : ", dataUrl);
+    rqst(dataUrl, (err, res, body) => {
+    if (err) {
+      res.writeHead(404, { "content-type": "text/html" });
+      res.end("file not found");
+    } else {
+      const parseBody = JSON.parse(body);
+      console.log("parseBody is : ", parseBody);
+      let resUrl = parseBody.articles[0].url;
+      console.log('this is urlres:' ,resUrl);
+      response.writeHead(200);
+      response.end(JSON.stringify(`${resUrl}`));
 
-
+    }
+  });
+};
 
 module.exports = {
   handlerHome,
   handlerPublic,
   handlerData
-}
+};
