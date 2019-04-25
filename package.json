@@ -4,7 +4,7 @@
   "description": "News headlines web app",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js | tap-spec",
+    "test": "node tests/test.js | tap-spec",
      "server": "nodemon src/server.js"
   },
   "repository": {

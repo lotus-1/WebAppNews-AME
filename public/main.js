@@ -11,7 +11,7 @@ function fetchValue() {
       return response.json();
     })
     .then(function(data) {
-      console.log("my data is : ", data);
+      //console.log("my data is : ", data);
       var news = document.createElement("a");
       var node = document.createTextNode("Click Here");
       news.href = data;

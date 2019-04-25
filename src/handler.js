@@ -55,7 +55,7 @@ const handlerData = (request, response) => {
       const parseBody = JSON.parse(body);
       //console.log("parseBody is : ", parseBody);
       let resUrl = parseBody.articles[0].url;
-      //console.log("this is urlres:", resUrl);
+      console.log("this is urlres:", resUrl);
       response.writeHead(200);
       response.end(JSON.stringify(`${resUrl}`));
     }
