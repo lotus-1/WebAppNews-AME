@@ -1,7 +1,8 @@
 <center>
 
 <h1>News headlines web app</h1> <br>
-![img](https://deagle-network.com/wp-content/uploads/2017/02/5215490-news-images.jpg) <br>
+![img](https://deagle-network.com/wp-content/uploads/2017/02/5215490-news-images.jpg)
+<br>
 
 
 <h2>Welcome to our App : An Updated News App </h2><br>
