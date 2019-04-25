@@ -41,12 +41,13 @@ const handlerPublic = (request, response) => {
 };
 
 const handlerData = (request, response) => {
-
   const parseUrl = url.parse(request.url);
   const parseQuery = querystring.parse(parseUrl.query);
-  const dataUrl = `https://newsapi.org/v2/top-headlines?country=${parseQuery.q}&apiKey=05c75aad309f4dc5b04f2638474ce2cd`;
+  const dataUrl = `https://newsapi.org/v2/top-headlines?country=${
+    parseQuery.q
+  }&apiKey=05c75aad309f4dc5b04f2638474ce2cd`;
   console.log("data url : ", dataUrl);
-    rqst(dataUrl, (err, res, body) => {
+  rqst(dataUrl, (err, res, body) => {
     if (err) {
       res.writeHead(404, { "content-type": "text/html" });
       res.end("file not found");
@@ -54,10 +55,9 @@ const handlerData = (request, response) => {
       const parseBody = JSON.parse(body);
       console.log("parseBody is : ", parseBody);
       let resUrl = parseBody.articles[0].url;
-      console.log('this is urlres:' ,resUrl);
+      console.log("this is urlres:", resUrl);
       response.writeHead(200);
       response.end(JSON.stringify(`${resUrl}`));
-
     }
   });
 };

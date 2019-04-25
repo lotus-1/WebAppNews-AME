@@ -3,7 +3,6 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   text-align: right;
-
 }
 
 .title {
@@ -14,16 +13,16 @@ body {
 }
 
 .search {
-text-align: center;
-width: 400px;
-box-sizing: border-box;
-border: 2px solid Black;
-font-size: 30px;
-background-color: white;
-background-position: 10px 10px;
-background-repeat: no-repeat;
-padding: 20px 50px 20px 50px;
-margin: 50px 150px;
+  text-align: center;
+  width: 400px;
+  box-sizing: border-box;
+  border: 2px solid Black;
+  font-size: 30px;
+  background-color: white;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 20px 50px 20px 50px;
+  margin: 50px 150px;
 }
 
 .button {
@@ -33,7 +32,6 @@ margin: 50px 150px;
   padding: 16px 32px;
   margin: 50px 300px;
   box-shadow: 3px 3px 3px 3px grey;
-
 }
 
 .result {
@@ -41,12 +39,4 @@ margin: 50px 150px;
   font-weight: bold;
   font-style: italic;
   margin: 50px 250px;
-
 }
-
-/* @media (min-width: 768px) {
-body {
-  text-align: center;
-  background-color: blue;
-}
-} */
